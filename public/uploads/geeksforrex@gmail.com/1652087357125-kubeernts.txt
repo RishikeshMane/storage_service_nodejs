@@ -1,0 +1,188 @@
+kubectl exec -it frontend-7c9f5f9859-jfghg -- /bin/bash
+
+
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+
+spec:
+ rules:
+ - host: www.nitin.gq
+   http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
+
+kubectl get pods
+
+\
+\
+
+
+1 created containers for frontend backend and database 
+
+2 after this created freenum account
+
+3 attached dns to it
+
+4 after that in  route 53 attached free num domain
+
+5 after that attached alias loadbalancer  
+
+
+
+
+pods represent single insatnce of cluster
+
+
+
+
+
+ingress does the work of routing
+
+
+
+sevice are used to connect and keep pods running
+
+
+
+we connected it by serices and by defining objects
+
+
+
+
+
+   23  eksctl version
+   24  sudo eksctl create cluster  --name Kubernetes-cluster  --region ap-south-1  --zones ap-south-1a,ap-south-1b,ap-south-1c  --version 1.21 --managed  --nodegroup-name workergroup  --node-type t3.small  --nodes-min 1  --nodes-max 4  --node-volume-size 20  --ssh-access  --ssh-public-key kubernets  --asg-access  --external-dns-access  --full-ecr-access  --kubeconfig /home/ubuntu/.kube/config
+   25  aws configure
+   26  sudo eksctl create cluster  --name Kubernetes-cluster  --region ap-south-1  --zones ap-south-1a,ap-south-1b,ap-south-1c  --version 1.21 --managed  --nodegroup-name workergroup  --node-type t3.small  --nodes-min 1  --nodes-max 4  --node-volume-size 20  --ssh-access  --ssh-public-key new-kubernts  --asg-access  --external-dns-access  --full-ecr-access  --kubeconfig /home/ubuntu/.kube/config
+   27  clear
+   28  ls
+   29  history
+   30  ekctl delete cluster eksctl-Kubernetes-cluster-cluster
+   31  eksctl delete cluster eksctl-Kubernetes-cluster-cluster
+   32  eksctl delete cluster Kubernetes-cluster
+   33  aws configure
+   34  sudo eksctl create cluster  --name Kubernetes-cluster  --region ap-south-1  --zones ap-south-1a,ap-south-1b,ap-south-1c  --version 1.21 --managed  --nodegroup-name workergroup  --node-type t3.small  --nodes-min 1  --nodes-max 4  --node-volume-size 20  --ssh-access  --ssh-public-key new-kubernts  --asg-access  --external-dns-access  --full-ecr-access  --kubeconfig /home/ubuntu/.kube/config
+   35  sudo eksctl create cluster  --name Kubernetes-cluster  --region ap-south-1  --zones ap-south-1a,ap-south-1b,ap-south-1c  --version 1.21 --managed  --nodegroup-name workergroup  --node-type t3.small  --nodes-min 1  --nodes-max 4  --node-volume-size 20  --ssh-access  --ssh-public-key new-kubernts  --asg-access  --external-dns-access  --full-ecr-access  --kubeconfig /home/ubuntu/.kube/config
+   36  kubectl get nodes
+   37  eksctl version
+   38  sudo apt install kubectl
+   39  apt-get update
+   40  kubectl version
+   41  kubectl --version
+   42  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+   43  curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+   44  echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+   45  sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+   46  chmod +x kubectl
+   47  mkdir -p ~/.local/bin
+   48  mv ./kubectl ~/.local/bin/kubectl
+   49  kubectl version --client
+   50  kubectl version --client --output=yaml
+   51  kubectl get nodes
+   52  kubectl cluster-info
+   53  curl localhost:8080
+   54  kubectl get nodes -o wide
+   55  kubectl version -o json
+   56  export KUBECONFIG=/etc/kubernetes/admin.conf or $HOME/.kube/config
+   57  kubectl get nodes
+   58  kubectl get pods
+   59  AWS eks update-kubeconfig -- region ap-south-1 --name Kubernetes-cluster
+   60  aws eks update-kubeconfig -- region ap-south-1 --name Kubernetes-cluster
+   61  aws eks update-kubeconfig --region ap-south-1 --name Kubernetes-cluster
+   62  histroy
+   63  kubectl get nodes
+   64  aws eks list-clusters
+   65  kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+   66  kubectl get deployment metrics-server -n kube-system
+   67  kubectl autoscale deployment frontend-6789f5654c-jl57w --cpu-percent=50 --min=1 --max=10
+   68  ls
+   69  kubectl apply -f database.yml
+   70  kubectl get pods
+   71  kubectl apply -f backend.yml
+   72  kubectl get pods
+   73  kubectl exec -it backend-6958d87f9-z9rjr -- /bin/bash
+   74  kubectl apply -f frontend.yml
+   75  nano frontend.yml
+   76  kubectl apply -f frontend.yml
+   77  kubectl get pods
+   78  clear
+   79  ls
+   80  kubectl get svc
+   81  history
+   82  kubectl get pods
+   83  clear
+   84  kubectl get pods
+   85  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.yaml
+   86  kubectl get pods
+   87  history
+
+
+
+
+
+
+it will route traffic
+
+
+with yml fileyml service file
+
+
+i have runned pods for that kuberntes pods
+
+
+i have to do hpa or vpa?
+
+
+
+
+
+
+
+
+
+                                      done with kuberntes pods horizontal scalling
+
+
+
+
+
+
+we create multiple pods 
+
+nrp agent 
+
+
+
+
+
+pods are isolated envirnment where we run application 
+
+
+pods are like containers
+
+
+
+we use ingress for internet coonnectivity 
+
+
+metrics server is used of auto scaling and pipelineinig
+
+it is defined in command 
+
+
+mam max load percentage i have defined as 50 percent and is it corsses 50 percent then it first pod will terminate and second will generate
+
+
+
+
